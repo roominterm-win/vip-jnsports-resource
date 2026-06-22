@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江南体育 · 日常查询与延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f2f4f6;
+      color: #2d3436;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 开场hero */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      margin-bottom: 2rem;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .hero em {
+      font-style: normal;
+      background: #eef1f5;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #4a5b6e;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      margin: 0.6rem 0 0.3rem;
+      color: #1e272e;
+      letter-spacing: -0.02em;
+    }
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #5b6f82;
+      max-width: 600px;
+      margin: 0.6rem auto 0;
+    }
+
+    /* 卡片通用 */
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e6eaef;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 480;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      color: #1e272e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::before {
+      content: "—";
+      color: #a0b3c9;
+      font-weight: 300;
+    }
+
+    /* 特点列表 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .feature-item {
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e6eaef;
+    }
+    .feature-item strong {
+      display: block;
+      font-weight: 550;
+      color: #1e272e;
+      margin-bottom: 0.25rem;
+    }
+    .feature-item span {
+      font-size: 0.95rem;
+      color: #4d5d6e;
+    }
+
+    /* 引用 / 提示 */
+    .insight {
+      background: #f0f4fa;
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0 0.8rem;
+      border-left: 4px solid #9bb7d4;
+    }
+    .insight p {
+      font-size: 0.98rem;
+      color: #2c3e50;
+    }
+
+    /* 场景卡片列 */
+    .scene-list {
+      list-style: none;
+      margin: 0.8rem 0 0.2rem;
+    }
+    .scene-list li {
+      padding: 0.5rem 0 0.5rem 1.8rem;
+      position: relative;
+      border-bottom: 1px dashed #e0e6ed;
+    }
+    .scene-list li:last-child {
+      border-bottom: none;
+    }
+    .scene-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #6c859e;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    /* faq 摘要 */
+    .faq-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      margin-top: 1rem;
+    }
+    .faq-item {
+      flex: 1 1 200px;
+    }
+    .faq-item .q {
+      font-weight: 520;
+      color: #1e272e;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item .a {
+      font-size: 0.92rem;
+      color: #506174;
+    }
+
+    /* 链接 */
+    a {
+      color: #2c6b9e;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    a:hover {
+      border-bottom-color: #2c6b9e;
+    }
+    .link-regular {
+      font-weight: 420;
+    }
+
+    /* 温和结尾 */
+    .footer-note {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      color: #6a7e93;
+      font-size: 0.9rem;
+      border-top: 1px solid #dce1e8;
+      margin-top: 0.8rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 1.5rem 1rem;
+      }
+      .hero {
+        padding: 2rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- 开场 -->
+    <div class="hero">
+      <em>日常 · 对照 · 延伸</em>
+      <h1>在查询中走近江南体育</h1>
+      <div class="sub">一个习惯从翻阅开始，慢慢铺展成熟悉的脉络。</div>
+    </div>
+
+    <!-- 承接段落 / 从日常查询说起 -->
+    <div class="card">
+      <h2>从一次查询开始</h2>
+      <p>可能只是比赛日程、联赛排名、训练方法，或者某个运动常识——点开窗口，输入关键词，页面缓缓呈现。这时候你遇见了 <a href="https://vip-jnsports.com">江南体育</a>。它没有太多修饰，信息被整理成清晰的模块，条目之间留有呼吸的间隙。你原本只想查一个数字，却忍不住读了旁边的解读，又顺着链接看了几段相关的分析。</p>
+      <p>这样的浏览路径，像在图书馆里随手抽出一本书，翻着翻着就坐了下来。江南体育的界面并不嘈杂，内容偏重实用与条理，适合你带着具体问题来，也适合一无所求地延伸阅读。</p>
+    </div>
+
+    <!-- 特点列表 -->
+    <div class="card">
+      <h2>结构 · 克制 · 可读</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <strong>条目清晰</strong>
+          <span>分类与列表简洁，不堆砌装饰，一眼能找到目标信息。</span>
+        </div>
+        <div class="feature-item">
+          <strong>语言平实</strong>
+          <span>叙述温和，不渲染情绪，适合长时间阅读与反复对照。</span>
+        </div>
+        <div class="feature-item">
+          <strong>更新稳定</strong>
+          <span>内容保持节奏，不会忽然涌入大量碎片化消息。</span>
+        </div>
+        <div class="feature-item">
+          <strong>延伸友好</strong>
+          <span>内链自然，从一篇文章可以平滑跳到另一个相关话题。</span>
+        </div>
+      </div>
+      <div class="insight">
+        <p>你可以先浏览某支球队的历史数据，再切换到训练建议，最后停在运动营养的科普上——整个过程没有干扰弹窗，也没有催促注册的提示。这种「不打扰」的设计，让阅读回归阅读本身。</p>
+      </div>
+    </div>
+
+    <!-- 场景 / 对照与延伸 -->
+    <div class="card">
+      <h2>三个常见场景</h2>
+      <ul class="scene-list">
+        <li><strong>赛前对照：</strong> 打开页面，把几组赛季数据并排放置，对比命中率、助攻、控球时间。江南体育的表格适合直接复制到笔记里做二次整理。</li>
+        <li><strong>知识延伸：</strong> 读到某个战术术语不太确定，点进词条链接，解释部分不过分简化，保留了必要的背景，适合从入门到稍深的理解。</li>
+        <li><strong>日常浏览：</strong> 没有明确目的时，顺着首页的文章列表往下翻，偶尔点开一篇，读完再关掉，像翻阅一本纸质期刊，没有必须读完的压力。</li>
+      </ul>
+      <p style="margin-top:1.2rem; color:#4a5b6e; font-size:0.96rem;">这些场景的共同点是：用户掌握节奏，信息辅助决策，而非替代思考。</p>
+    </div>
+
+    <!-- FAQ 摘要 + 提示 -->
+    <div class="card">
+      <h2>常见疑问摘要</h2>
+      <div class="faq-summary">
+        <div class="faq-item">
+          <div class="q">内容偏向哪个领域？</div>
+          <div class="a">以球类与综合赛事为主，兼顾训练、饮食、规则等周边知识。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">需要注册才能阅读吗？</div>
+          <div class="a">绝大部分内容直接可见，无需登录或付费。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">文章大约多长？</div>
+          <div class="a">多数在 800–1500 字之间，也有更详细的专题，适合碎片与深度交替。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">移动端体验如何？</div>
+          <div class="a">适配良好，卡片自适应，字体不会过小，导航折叠后依然顺手。</div>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; background: #eef3f9; border-radius: 18px; padding: 1rem 1.4rem; font-size:0.95rem;">
+        <strong style="color:#1e272e;">一点提示：</strong> 如果你习惯在阅读时做笔记，江南体育的页面结构对摘录友好——标题层级分明，段落较短，引用部分用引号或缩进区分，很容易找到重点。
+      </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="footer-note">
+      <p>从一次查询到安静阅读，江南体育提供的是一个可供反复回来对照的起点。<br>你可以随时打开它，也可能在别处读到相关内容后再回来核实。</p>
+      <p style="margin-top: 0.6rem; letter-spacing: 0.3px; color: #5a6e85;">—— 不喧哗，但常在。</p>
+    </div>
+
+  </div>
+</body>
+</html>
